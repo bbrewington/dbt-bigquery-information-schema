@@ -1,0 +1,7 @@
+column_name,data_type,value
+TABLE_CATALOG,STRING,The name of the project that contains the dataset
+TABLE_SCHEMA,STRING,The name of the dataset that contains the view also referred to as the dataset id
+TABLE_NAME,STRING,The name of the view also referred to as the table id
+VIEW_DEFINITION,STRING,The SQL query that defines the view
+CHECK_OPTION,STRING,The value returned is always NULL
+USE_STANDARD_SQL,STRING,YES if the view was created by using a standard SQL query; NO if useLegacySql is set to true

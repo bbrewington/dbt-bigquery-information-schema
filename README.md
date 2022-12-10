@@ -4,6 +4,8 @@ dbt project to make it easier to work with [BigQuery INFORMATION_SCHEMA views](h
 
 ## How To Use (assuming running locally)
 
+Planning on making this more user friendly at some point, but for now it works
+
 1. Edit `project:` & `dataset:` in [dbt_bigquery_info_schema/profiles.yml](dbt_bigquery_info_schema/profiles.yml)
 1. Run the setup script: `source $(git rev-parse --show-toplevel)/dbt_project_setup.sh`...here's what it does:
     1. set working directory to top level of repo

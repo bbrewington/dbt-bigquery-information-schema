@@ -1,0 +1,9 @@
+column_name,data_type,value
+CATALOG_NAME,STRING,The name of the project that contains the dataset
+SCHEMA_NAME,STRING,The dataset's name also referred to as the datasetId
+SCHEMA_OWNER,STRING,The value is always NULL
+CREATION_TIME,TIMESTAMP,The dataset's creation time
+LAST_MODIFIED_TIME,TIMESTAMP,The dataset's last modified time
+LOCATION,STRING,The dataset's geographic location
+DDL,STRING,The CREATE SCHEMA DDL statement that can be used to create the dataset
+DEFAULT_COLLATION_NAME,STRING,"The name of the default collation specification if it exists; otherwise, NULL."

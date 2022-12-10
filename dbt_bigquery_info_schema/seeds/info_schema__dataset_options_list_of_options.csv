@@ -1,0 +1,7 @@
+OPTION_NAME,OPTION_TYPE,OPTION_VALUE
+default_partition_expiration_days,FLOAT64,"The default lifetime, in days, of all partitioned tables in the dataset"
+default_table_expiration_days,FLOAT64,"The default lifetime, in days, of all tables in the dataset"
+description,STRING,A description of the dataset
+friendly_name,STRING,A description of the dataset
+labels,"ARRAY<STRUCT<STRING, STRING>>","An array of STRUCT's that represent the labels on the dataset"
+storage_billing_model,STRING,In preview. The storage billing model of the dataset
