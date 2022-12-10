@@ -1,0 +1,7 @@
+dbt-bigquery>=1.3.0,<1.4.0
+dbt-coves
+beautifulsoup4>=4.9.0,<4.10.0
+
+# DELETE IF DONT USE
+pandas>=1.5.0,<1.6.0
+lxml>=4.9.0,<5.0.0

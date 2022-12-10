@@ -1,0 +1,14 @@
+column_name,data_type,value
+table_catalog,STRING,The project ID of the project that contains the dataset.
+table_schema,STRING,The name of the dataset that contains the table or view. Also referred  to as the datasetId.
+table_name,STRING,The name of the table or view. Also referred to as the  tableId.
+table_type,STRING,The table type; one of the following: BASE TABLE: A standard  table CLONE: A  table clone  (Preview)  SNAPSHOT: A  table snapshot VIEW: A  view MATERIALIZED VIEW: A  materialized view EXTERNAL: A table that references an  external data source
+is_insertable_into,STRING,YES or NO depending on whether the table  supports DML INSERT  statements
+is_typed,STRING,The value is always NO
+creation_time,TIMESTAMP,The table's creation time
+ddl,STRING,"The DDL statement  that can be used to recreate the table, such as  CREATE TABLE  or CREATE VIEW"
+clone_time,TIMESTAMP,"For table clones  (Preview),  the time when the base table was  cloned to create this  table. If  time travel was used, then this  field contains the time travel timestamp. Otherwise, the  clone_time field is the same as the  creation_time field. Applicable only to  tables with table_type set to CLONE."
+base_table_catalog,STRING,"For table clones  (Preview),  the base table's project. Applicable only to  tables with table_type set to CLONE."
+base_table_schema,STRING,"For table clones  (Preview),  the base table's dataset. Applicable only to tables with  table_type set to CLONE."
+base_table_name,STRING,"For table clones  (Preview),  the base table's name. Applicable only to tables with  table_type set to CLONE."
+default_collation_name,STRING,"The name of the default collation specification  if it exists; otherwise, NULL."
