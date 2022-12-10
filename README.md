@@ -12,7 +12,9 @@ dbt project to make it easier to work with [BigQuery INFORMATION_SCHEMA views](h
     1. change working directory to dbt project
     1. Add venv* to .gitignore file
     1. test via `dbt debug`
-1. Now that you have a working dbt project, and have cd'ed into it, you can do dbt stuff!
+1. After running that script, you should have a working dbt project (w/ successful debug test), and the script cd'ed you into it
+1. Update values in profiles.yml so it works for your setup
+1. Go do dbt stuff!
 
 ## Contributing
 
