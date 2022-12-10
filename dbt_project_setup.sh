@@ -4,8 +4,15 @@
 cd $(git rev-parse --show-toplevel)
 
 # set up virtual environment and activate it
-python -m venv venv
-source venv/bin/activate
+if [ -d "venv" ] 
+then
+    source venv/bin/activate
+    pip install --upgrade pip
+else
+    python -m venv venv
+    source venv/bin/activate
+    pip install --upgrade pip
+fi
 
 # Install Python libraries (user)
 pip install -r requirements.txt

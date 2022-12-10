@@ -1,0 +1,7 @@
+Column name,Data type,Value
+TABLE_CATALOG,STRING,The project ID of the project that contains the dataset
+TABLE_SCHEMA,STRING,The name of the dataset that contains the table or view also referred to as the datasetId
+TABLE_NAME,STRING,The name of the table or view also referred to as the tableId
+OPTION_NAME,STRING,One of the name values in the options table
+OPTION_TYPE,STRING,One of the data type values in the options table
+OPTION_VALUE,STRING,One of the value options in the options table
