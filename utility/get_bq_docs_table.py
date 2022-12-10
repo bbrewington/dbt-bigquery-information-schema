@@ -22,6 +22,9 @@ def output_to_csv(local_html_file, output_csv_file):
     
     df = pd.read_html(str(table_element))[0]
     
+    df.rename(columns={"Column name": "column_name", "Data type": "data_type", "Value": "value"},
+              inplace=True)
+    
     if df.shape[0] > 0:
         print('outputting to csv')
         df.to_csv(output_csv_file, index=False)
@@ -29,3 +32,9 @@ def output_to_csv(local_html_file, output_csv_file):
 
 output_to_csv(local_html_file='/Users/brentbrewington/Downloads/GCP Info Schema - TABLES.html',
               output_csv_file='dbt_bigquery_info_schema/seeds/info_schema__table.csv')
+
+output_to_csv(local_html_file='/Users/brentbrewington/Downloads/COLUMNS.html',
+              output_csv_file='seeds/info_schema__columns.csv')
+
+output_to_csv(local_html_file='/Users/brentbrewington/Downloads/column_field_paths.html',
+              output_csv_file='seeds/info_schema__column_field_paths.csv')

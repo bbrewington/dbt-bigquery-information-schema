@@ -1,0 +1,10 @@
+column_name,data_type,value
+TABLE_CATALOG,STRING,The project ID of the project that contains the dataset
+TABLE_SCHEMA,STRING,The name of the dataset that contains the table also referred to as  the datasetId
+TABLE_NAME,STRING,The name of the table or view also referred to as the tableId
+COLUMN_NAME,STRING,The name of the column
+FIELD_PATH,STRING,The path to a column nested  within a `RECORD` or `STRUCT` column
+DATA_TYPE,STRING,The column's standard SQL  data type
+DESCRIPTION,STRING,The column's description
+COLLATION_NAME,STRING,"The name of the collation specification  if it exists; otherwise, NULL  If a STRING, ARRAY<STRING>, or  STRING field in a STRUCT is passed in, the  collation specification is returned if it exists; otherwise,  NULL is returned"
+ROUNDING_MODE,STRING,"The mode of rounding that's used when applying precision and scale to  parameterized NUMERIC or BIGNUMERIC values;  otherwise, the value is NULL"
