@@ -1,0 +1,6 @@
+column_name,data_type,value
+CATALOG_NAME,STRING,The name of the project that contains the dataset
+SCHEMA_NAME,STRING,The dataset's name also referred to as the datasetId
+OPTION_NAME,STRING,One of the name values in the options table
+OPTION_TYPE,STRING,One of the data type values in the options table
+OPTION_VALUE,STRING,One of the value options in the options table

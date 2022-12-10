@@ -1,0 +1,8 @@
+select
+  TABLE_CATALOG,
+  TABLE_SCHEMA,
+  TABLE_NAME,
+  VIEW_DEFINITION,
+  CHECK_OPTION,
+  USE_STANDARD_SQL
+from {{ info_schema('VIEWS') }}
