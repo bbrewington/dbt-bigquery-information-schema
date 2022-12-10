@@ -1,0 +1,10 @@
+OPTION_NAME,OPTION_TYPE,OPTION_VALUE
+partition_expiration_days,FLOAT64,"The default lifetime, in days, of all partitions in a partitioned table"
+expiration_timestamp,FLOAT64,The time when this table expires
+kms_key_name,STRING,The name of the Cloud KMS key used to encrypt the table
+friendly_name,STRING,The table's descriptive name
+description,STRING,A description of the table
+labels,"ARRAY<STRUCT<STRING, STRING>>",An array of STRUCT's that represent the labels on the table
+require_partition_filter,BOOL,Whether queries over the table require a partition filter
+enable_refresh,BOOL,Whether automatic refresh is enabled for a materialized view
+refresh_interval_minutes,FLOAT64,How frequently a materialized view is refreshed
