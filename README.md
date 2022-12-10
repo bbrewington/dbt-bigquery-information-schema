@@ -2,6 +2,20 @@
 
 dbt project to make it easier to work with [BigQuery INFORMATION_SCHEMA views](https://cloud.google.com/bigquery/docs/information-schema-intro).  Treats these views as data sources, and builds them into a Distributed Acyclic Graph (a.k.a. DAG) via dbt, that can be easily browsed using the `dbt docs` command, to see which views logically connect, and to give some examples of how to use them in your BigQuery project
 
+## How To Use (assuming running locally)
+
+1. Edit values for your setup
+    - edit project & dataset in dbt_bigquery_info_schema/profiles.yml
+1. Run the setup script: `bash $(git rev-parse --show-toplevel)/dbt_project_setup.sh`...here's what it does:
+    1. set working directory to top level of repo
+    1. set up virtual environment and activate it
+    1. change working directory to dbt project
+    1. Add venv* to .gitignore file
+    1. test via `dbt debug`
+1. After running that script, you should have a working dbt project (w/ successful debug test), and the script cd'ed you into it
+1. Update values in profiles.yml so it works for your setup
+1. Go do dbt stuff!
+
 ## Contributing
 
 For master list of GBQ stuff and PM approach, see [Issue #1](https://github.com/bbrewington/dbt-bigquery-information-schema/issues/1) - and otherwise, see [Issues](https://github.com/bbrewington/dbt-bigquery-information-schema/issues)
