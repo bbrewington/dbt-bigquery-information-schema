@@ -1,0 +1,30 @@
+column_name,data_type,value
+creation_time,TIMESTAMP,(Partitioning column) Creation time of this job. Partitioning is based on the UTC time of this timestamp.
+project_id,STRING,(Clustering column) ID of the project.
+project_number,INTEGER,Number of the project.
+user_email,STRING,(Clustering column) Email address or service account of the user who ran the job.
+job_id,STRING,"ID of the job. For example, bquxjob_1234."
+job_type,STRING,"The type of the job. Can be QUERY, LOAD, EXTRACT, COPY, or null. Job type null indicates an internal job, such as script job statement evaluation or materialized view refresh."
+statement_type,STRING,"The type of query statement, if valid. For example, SELECT, INSERT, UPDATE, DELETE, or SCRIPT. See QueryStatementType for list of valid values."
+priority,STRING,The priority of this job. Valid values include INTERACTIVE and BATCH.
+start_time,TIMESTAMP,Start time of this job.
+end_time,TIMESTAMP,End time of this job.
+query,STRING,SQL query text. Note: Only JOBS_BY_PROJECT view has the query column.
+state,STRING,"Running state of the job. Valid states include PENDING, RUNNING, and DONE."
+reservation_id,STRING,"Name of the primary reservation assigned to this job, if applicable. If your job ran in a project that is assigned to a reservation, it would follow this format: RESERVATION_ADMIN_PROJECT:RESERVATION_LOCATION.RESERVATION_NAME.  In this output: RESERVATION_ADMIN_PROJECT: the name of the Google Cloud project that administers the reservation; RESERVATION_LOCATION: the location of the reservation; RESERVATION_NAME: the name of the reservation"
+total_bytes_processed,INTEGER,Total bytes processed by the job.
+total_slot_ms,INTEGER,Slot milliseconds for the job over its entire duration.
+error_result,RECORD,"Details of error, if any, as an ErrorProto."
+cache_hit,BOOLEAN,Whether the query results of this job were from a cache.
+destination_table,RECORD,"Destination table for results, if any."
+referenced_tables,RECORD,Array of tables referenced by the job. Only populated for query jobs.
+labels,RECORD,"Array of labels applied to the job as key, value strings."
+timeline,RECORD,Query timeline of the job. Contains snapshots of query execution.
+job_stages,RECORD,Query stages of the job.
+total_bytes_billed,INTEGER,"If the project is configured to use on-demand pricing, then this field contains the total bytes billed for the job. If the project is configured to use flat-rate pricing, then you are not billed for bytes and this field is informational only."
+parent_job_id,STRING,"ID of the parent job, if any."
+transaction_id,STRING,"ID of the transaction in which this job ran, if any. (Preview)"
+session_info,RECORD,"Details about the session in which this job ran, if any. (Preview)"
+dml_statistics,RECORD,"If the job is a query with a DML statement, the value is a record with the following fields: inserted_row_count: The number of rows that were inserted.; deleted_row_count: The number of rows that were deleted.; updated_row_count: The number of rows that were updated.; For all other jobs, the value is NULL.; This column is present in the INFORMATION_SCHEMA.JOBS_BY_USER and INFORMATION_SCHEMA.JOBS_BY_PROJECT views."
+bi_engine_statistics,RECORD,"If the project is configured to use BI Engine SQL Interface, then this field contains BiEngineStatistics . Otherwise NULL."
+total_modified_partitions,INTEGER,Total number of partitions the job modified. This field is populated for LOAD and QUERY jobs.
