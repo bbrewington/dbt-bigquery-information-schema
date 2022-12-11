@@ -1,0 +1,7 @@
+SELECT
+  j.JOB_ID,
+  j.CREATION_TS as JOB_CREATION_TS,
+  L.KEY as LABEL_KEY,
+  L.VALUE as LABEL_VALUE
+FROM {{ ref('stg__info_schema__jobs') }} as j
+CROSS JOIN UNNEST(LABELS) AS L

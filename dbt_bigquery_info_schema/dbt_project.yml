@@ -18,3 +18,9 @@ clean-targets:
 
 models:
   dbt_bigquery_info_schema:
+    +persist_docs:
+      relation: True
+      columns: True
+
+vars:
+  user_timezone_name: 'America/New_York'
