@@ -4,15 +4,17 @@
 cd $(git rev-parse --show-toplevel)
 
 # set up virtual environment and activate it
-if [ -d "venv" ] 
-then
-    source venv/bin/activate
-    pip install --upgrade pip
-else
+if ! [[ -d "venv" ]]; then
     python -m venv venv
-    source venv/bin/activate
-    pip install --upgrade pip
 fi
+
+if [[ "$OSTYPE" == "msys" ]]; then
+    source venv/Scripts/activate
+else
+    source venv/bin/activate
+fi
+
+pip install --upgrade pip
 
 # Install Python libraries (user)
 pip install -r requirements.txt
