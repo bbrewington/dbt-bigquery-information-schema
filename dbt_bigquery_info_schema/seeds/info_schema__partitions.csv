@@ -1,0 +1,10 @@
+column_name,data_type,value
+TABLE_CATALOG,STRING,The project ID of the project that contains the table
+TABLE_SCHEMA,STRING,"The name of the dataset that contains the table, also referred to as the datasetId"
+TABLE_NAME,STRING,"The name of the table, also referred to as the tableId"
+PARTITION_ID,STRING,"A single partition's ID. For unpartitioned tables, the value is NULL. For partitioned tables that contain rows with NULL values in the partitioning column, the value is __NULL__."
+TOTAL_ROWS,INTEGER,The total number of rows in the partition
+TOTAL_LOGICAL_BYTES,INTEGER,The total number of logical bytes in the partition
+TOTAL_BILLABLE_BYTES,INTEGER,The total number of billable bytes in the partition
+LAST_MODIFIED_TIME,TIMESTAMP,The time when the data was most recently written to the partition
+STORAGE_TIER,STRING,The partition's storage tier - ACTIVE: the partition is billed as active storage; LONG_TERM: the partition is billed as long-term storage

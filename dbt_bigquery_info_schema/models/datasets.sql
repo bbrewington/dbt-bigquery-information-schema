@@ -1,6 +1,6 @@
 select
-  CATALOG_NAME,
-  SCHEMA_NAME,
+  CATALOG_NAME as PROJECT_ID,
+  SCHEMA_NAME as DATASET_ID,
   SCHEMA_OWNER, /* TODO: this is always NULL - need to comment out? */
   CREATION_TIME,
   LAST_MODIFIED_TIME,
