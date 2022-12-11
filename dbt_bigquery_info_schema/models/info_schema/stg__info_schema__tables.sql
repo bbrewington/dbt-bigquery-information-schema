@@ -1,12 +1,12 @@
 select
-  table_catalog,
-  table_schema,
-  table_name,
-  table_type,
-  is_insertable_into,
-  is_typed,
-  creation_time,
-  ddl,
+  TABLE_CATALOG as PROJECT_ID,
+  TABLE_SCHEMA as DATASET_NAME,
+  TABLE_NAME,
+  TABLE_TYPE,
+  IS_INSERTABLE_INTO,
+  IS_TYPED,
+  CREATION_TIME,
+  DDL,
   /* TODO: Leaving TABLE CLONE fields out for now - might want to create macro ping
      info schema first and check if there are any, then if so use these
   clone_time,
@@ -14,5 +14,5 @@ select
   base_table_schema,
   base_table_name,
   */
-  default_collation_name
+  DEFAULT_COLLATION_NAME
 from {{ info_schema('TABLES') }}
