@@ -1,3 +1,17 @@
+with query_header as (
+  with j as (
+  select parse_json('{"app": "dbt", "dbt_version": "1.3.0", "profile_name": "citibike_dbt", "target_name": "prod", "connection_name": "cse-6242-sp22-nyatl.information_schema"}') as dbt_header
+)
+
+select
+  string(dbt_header.app) as app,
+  string(dbt_header.dbt_version) as dbt_version,
+  string(dbt_header.profile_name) as profile_name,
+  string(dbt_header.target_name) as target_name,
+  string(dbt_header.connection_name) as connection_name
+from j
+)
+
 select
   CREATION_TIME as CREATION_TS,
   DATETIME(CREATION_TIME, "{{ var('user_timezone_name') }}" ) as CREATION_DTTM_TZ,

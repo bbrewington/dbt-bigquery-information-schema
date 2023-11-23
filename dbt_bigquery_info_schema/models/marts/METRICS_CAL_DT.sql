@@ -1,8 +1,8 @@
 with date_spine as (
   select CAL_DT
   from UNNEST(GENERATE_DATE_ARRAY(
-    (select MIN(DATE(CREATION_TS)) from {{ ref('stg__info_schema__jobs') }} ),
-    (select MAX(DATE(CREATION_TS)) from {{ ref('stg__info_schema__jobs') }} )
+    (select MIN(DATE(MIN_CREATION_TS)) from {{ ref('METRICS_JOB') }} ),
+    (select MAX(DATE(MIN_CREATION_TS)) from {{ ref('METRICS_JOB') }} )
   )) as CAL_DT
 ),
 
