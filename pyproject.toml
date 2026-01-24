@@ -1,0 +1,15 @@
+[project]
+name = "dbt-bigquery-info-schema"
+version = "1.0.0"
+requires-python = ">=3.9"
+dependencies = [
+    "dbt-bigquery>=1.9.0,<2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "dbt-coves",
+    "beautifulsoup4>=4.9.0",
+    "pandas>=1.5.0",
+    "lxml>=4.9.0",
+]
