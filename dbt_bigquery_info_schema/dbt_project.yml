@@ -24,3 +24,6 @@ models:
 
 vars:
   user_timezone_name: 'America/New_York'
+  # info_schema_project: Override the project for INFORMATION_SCHEMA queries
+  # Defaults to target.database from profiles.yml if not set
+  # Set via: dbt run --vars '{info_schema_project: my-gcp-project}'

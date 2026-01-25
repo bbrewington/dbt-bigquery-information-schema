@@ -4,10 +4,10 @@ bigquery_profile:
     dev:
       type: bigquery
       method: oauth
-      project: your-gbq-project-here # TODO (user): change this to your project
-      dataset: gbq_info_schema # TODO (user): update this if needed
+      project: "{{ env_var('DBT_BQ_PROJECT', 'your-gbq-project-here') }}"
+      dataset: "{{ env_var('DBT_BQ_DATASET', 'gbq_info_schema') }}"
       threads: 4
       job_execution_timeout_seconds: 300
       job_retries: 1
-      location: US
+      location: "{{ env_var('DBT_BQ_LOCATION', 'US') }}"
       priority: interactive
