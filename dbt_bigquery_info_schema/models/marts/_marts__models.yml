@@ -1,0 +1,197 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: Calendar date dimension with date attributes for joins and filtering
+    columns:
+      - name: date_key
+        description: Surrogate key in YYYYMMDD format
+        tests:
+          - unique
+          - not_null
+      - name: cal_dt
+        description: Calendar date
+        tests:
+          - unique
+          - not_null
+      - name: day_of_week
+        description: Day of week (1=Sunday, 7=Saturday)
+      - name: day_of_month
+        description: Day of month (1-31)
+      - name: week_of_year
+        description: Week number of year (1-53)
+      - name: month
+        description: Month number (1-12)
+      - name: quarter
+        description: Quarter number (1-4)
+      - name: year
+        description: Four-digit year
+      - name: day_name
+        description: Full day name (e.g., Monday)
+      - name: month_name
+        description: Full month name (e.g., January)
+      - name: is_weekend
+        description: True if Saturday or Sunday
+      - name: is_weekday
+        description: True if Monday through Friday
+
+  - name: dim_user
+    description: User dimension derived from job history with user attributes and lifetime metrics
+    columns:
+      - name: user_email
+        description: Email address of the user who ran the job
+        tests:
+          - unique
+          - not_null
+      - name: email_domain
+        description: Domain portion of email address
+      - name: is_service_account
+        description: True if the user is a GCP service account
+      - name: total_jobs
+        description: Total number of jobs run by this user
+      - name: first_job_at
+        description: Timestamp of user's first job
+      - name: last_job_at
+        description: Timestamp of user's most recent job
+      - name: lifetime_bytes_processed
+        description: Total bytes processed by this user across all jobs
+      - name: lifetime_bytes_billed
+        description: Total bytes billed for this user across all jobs
+
+  - name: dim_table
+    description: Table dimension with metadata and access metrics
+    columns:
+      - name: table_full_id
+        description: Fully qualified table identifier (project.dataset.table)
+        tests:
+          - unique
+          - not_null
+      - name: project_id
+        description: GCP project ID
+      - name: dataset_name
+        description: BigQuery dataset name
+      - name: table_name
+        description: Table name
+      - name: table_type
+        description: Type of table (BASE TABLE, VIEW, MATERIALIZED VIEW, etc.)
+      - name: created_at
+        description: When the table was created
+      - name: ddl
+        description: DDL statement that created the table
+      - name: last_accessed_at
+        description: When the table was last queried
+      - name: query_count_all_time
+        description: Total number of queries that referenced this table
+      - name: accessed_last_7_days
+        description: True if table was queried in the last 7 days
+      - name: accessed_last_30_days
+        description: True if table was queried in the last 30 days
+      - name: accessed_last_90_days
+        description: True if table was queried in the last 90 days
+
+  - name: fct_job
+    description: Job execution fact table with one row per BigQuery job
+    columns:
+      - name: job_id
+        description: Unique identifier for the job
+        tests:
+          - unique
+          - not_null
+      - name: cal_dt
+        description: Calendar date of job creation (in configured timezone)
+      - name: hour
+        description: Hour of job creation (0-23)
+      - name: project_id
+        description: GCP project ID where job ran
+      - name: user_email
+        description: Email of user who submitted the job
+      - name: job_type
+        description: Type of job (QUERY, LOAD, EXTRACT, COPY)
+      - name: statement_type
+        description: SQL statement type for QUERY jobs (SELECT, INSERT, UPDATE, etc.)
+      - name: priority
+        description: Job priority (INTERACTIVE or BATCH)
+      - name: state
+        description: Final state of the job (DONE, RUNNING, PENDING)
+      - name: creation_ts
+        description: Timestamp when job was created
+      - name: start_ts
+        description: Timestamp when job started executing
+      - name: end_ts
+        description: Timestamp when job completed
+      - name: duration_seconds
+        description: Job duration in seconds (end_ts - start_ts)
+      - name: total_bytes_processed
+        description: Bytes processed by the job
+      - name: total_bytes_billed
+        description: Bytes billed for the job
+      - name: total_slot_ms
+        description: Slot milliseconds consumed by the job
+      - name: is_cache_hit
+        description: True if query results were served from cache
+      - name: is_error
+        description: True if job ended with an error
+      - name: has_labels
+        description: True if job had labels attached
+      - name: reservation_id
+        description: Reservation ID if job used reserved slots
+      - name: parent_job_id
+        description: Parent job ID for child jobs (e.g., scripting)
+
+  - name: fct_job_daily
+    description: Daily job metrics snapshot with one row per calendar date
+    columns:
+      - name: cal_dt
+        description: Calendar date
+        tests:
+          - unique
+          - not_null
+      - name: job_count
+        description: Total number of jobs on this date
+      - name: total_bytes_processed
+        description: Sum of bytes processed
+      - name: total_bytes_billed
+        description: Sum of bytes billed
+      - name: total_slot_ms
+        description: Sum of slot milliseconds consumed
+      - name: error_count
+        description: Number of jobs that ended in error
+      - name: cache_hit_count
+        description: Number of jobs served from cache
+      - name: labeled_job_count
+        description: Number of jobs with labels
+
+  - name: fct_job_user_daily
+    description: Daily job metrics by user with one row per user_email + cal_dt combination
+    columns:
+      - name: user_email
+        description: Email of user who submitted the jobs
+        tests:
+          - not_null
+      - name: cal_dt
+        description: Calendar date
+        tests:
+          - not_null
+      - name: job_count
+        description: Total number of jobs by this user on this date
+      - name: total_bytes_processed
+        description: Sum of bytes processed
+      - name: total_bytes_billed
+        description: Sum of bytes billed
+      - name: total_slot_ms
+        description: Sum of slot milliseconds consumed
+      - name: error_count
+        description: Number of jobs that ended in error
+      - name: cache_hit_count
+        description: Number of jobs served from cache
+      - name: query_count
+        description: Number of QUERY jobs
+      - name: load_count
+        description: Number of LOAD jobs
+      - name: extract_count
+        description: Number of EXTRACT jobs
+      - name: copy_count
+        description: Number of COPY jobs
+    tests:
+      - unique:
+          column_name: "user_email || '-' || cast(cal_dt as string)"
